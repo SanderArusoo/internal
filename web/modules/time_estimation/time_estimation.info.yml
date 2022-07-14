@@ -1,0 +1,5 @@
+name: 'Time Estimation Entity'
+type: module
+description: 'Time Estimation Entity module'
+core_version_requirement: ^9 || ^10
+package: 'Custom'
