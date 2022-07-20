@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Provides a time estimation entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\time_estimation\Entity\TimeEstimation;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function time_estimation_theme() {
+  return [
+    'time_estimation' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for time estimation templates.
+ *
+ * Default template: time-estimation.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the time estimation information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_time_estimation(array &$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function time_estimation_user_cancel($edit, UserInterface $account, $method) {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish time estimations.
+      $storage = \Drupal::entityTypeManager()->getStorage('time_estimation');
+      $time_estimation_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->execute();
+      foreach ($storage->loadMultiple($time_estimation_ids) as $time_estimation) {
+        $time_estimation->set('status', FALSE);
+        $time_estimation->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize time estimations.
+      $storage = \Drupal::entityTypeManager()->getStorage('time_estimation');
+      $time_estimation_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->execute();
+      foreach ($storage->loadMultiple($time_estimation_ids) as $time_estimation) {
+        $time_estimation->setOwnerId(0);
+        $time_estimation->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function time_estimation_user_predelete(UserInterface $account) {
+  // Delete time estimations.
+  $storage = \Drupal::entityTypeManager()->getStorage('time_estimation');
+  $time_estimation_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->execute();
+  $time_estimations = $storage->loadMultiple($time_estimation_ids);
+  $storage->delete($time_estimations);
+}

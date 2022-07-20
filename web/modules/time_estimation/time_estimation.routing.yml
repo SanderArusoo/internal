@@ -1,0 +1,8 @@
+
+entity.time_estimation.settings:
+  path: 'admin/structure/time-estimation'
+  defaults:
+    _form: '\Drupal\time_estimation\Form\TimeEstimationSettingsForm'
+    _title: 'Time estimation'
+  requirements:
+    _permission: 'access content'

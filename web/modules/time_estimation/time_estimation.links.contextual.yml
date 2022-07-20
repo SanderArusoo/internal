@@ -1,0 +1,10 @@
+entity.time_estimation.edit_form:
+  route_name: entity.time_estimation.edit_form
+  group: time_estimation
+  title: Edit
+
+entity.time_estimation.delete_form:
+  route_name: entity.time_estimation.delete_form
+  group: time_estimation
+  title: Delete
+  weight: 10

@@ -1,0 +1,10 @@
+entity.time_estimation.settings:
+  title: 'Time estimation'
+  description: 'Configure a Time estimation entity type.'
+  route_name:  entity.time_estimation.settings
+  parent: system.admin_structure
+entity.time_estimation.collection:
+  title: 'Time estimations'
+  description: 'List of time estimations.'
+  route_name: entity.time_estimation.collection
+  parent: system.admin_content

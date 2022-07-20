@@ -1,0 +1,3 @@
+administer time estimation:
+  title: 'Administer time estimation settings'
+  restrict access: true

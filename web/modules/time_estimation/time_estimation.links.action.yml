@@ -1,0 +1,5 @@
+time_estimation.add_form:
+  title: 'Add time estimation'
+  route_name: entity.time_estimation.add_form
+  appears_on:
+    - entity.time_estimation.collection

@@ -1,0 +1,22 @@
+entity.time_estimation.settings:
+  title: 'Settings'
+  route_name: entity.time_estimation.settings
+  base_route: entity.time_estimation.settings
+entity.time_estimation.view:
+  title: 'View'
+  route_name: entity.time_estimation.canonical
+  base_route: entity.time_estimation.canonical
+entity.time_estimation.edit_form:
+  title: 'Edit'
+  route_name: entity.time_estimation.edit_form
+  base_route: entity.time_estimation.canonical
+entity.time_estimation.delete_form:
+  title: 'Delete'
+  route_name: entity.time_estimation.delete_form
+  base_route: entity.time_estimation.canonical
+  weight: 10
+entity.time_estimation.collection:
+  title: 'Time estimations'
+  route_name: entity.time_estimation.collection
+  base_route: system.admin_content
+  weight: 10
