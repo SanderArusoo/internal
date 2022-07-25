@@ -164,6 +164,8 @@ class TimeEstimation extends ContentEntityBase implements TimeEstimationInterfac
       ])
       ->setDisplayConfigurable('view', TRUE);
 
+
+
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the time estimation was last edited.'));

@@ -7,10 +7,8 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Http\RequestStack;
 use Drupal\Core\Session\AccountProxy;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
-use phpDocumentor\Reflection\Types\Boolean;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -115,31 +113,38 @@ class TimeEstimationPostResource extends ResourceBase
       if (!empty($postDataDecoded->task)) {
 
 
-        $availableTimesEntity = $this->availableTimesStorage->create([
-          'field_task_nr_' => $postDataDecoded->task,
-          'label' => $postDataDecoded->label,
-          'field_timestamp' => $postDataDecoded->timestamp,
+          $availableTimesEntity = $this->availableTimesStorage->create([
+            'field_task_nr_' => $postDataDecoded->task,
+            'label' => $postDataDecoded->label,
+            'field_timestamp' => $postDataDecoded->timestamp,
 
-          'field_setup' => $postDataDecoded->tableData[0]->time,
-          'field_development' => $postDataDecoded->tableData [1]->time,
-          'field_testing' => $postDataDecoded->tableData[2]->time,
-          'field_documentation' => $postDataDecoded->tableData[3]->time,
-          'field_code_review' => $postDataDecoded->tableData[4]->time,
-          'field_jira_management' => $postDataDecoded->tableData[5]->time,
-          'field_qa_deploy' => $postDataDecoded->tableData[6]->time,
-          'field_live_deploy' => $postDataDecoded->tableData[7]->time
+           //  TODO:
+            //timestamp still 01.01.1970. correct one coming in from vue front
+
+            'field_setup' => $postDataDecoded->tableData[0]->time,
+            'field_development' => $postDataDecoded->tableData [1]->time,
+            'field_testing' => $postDataDecoded->tableData[2]->time,
+            'field_documentation' => $postDataDecoded->tableData[3]->time,
+            'field_code_review' => $postDataDecoded->tableData[4]->time,
+            'field_jira_management' => $postDataDecoded->tableData[5]->time,
+            'field_qa_deploy' => $postDataDecoded->tableData[6]->time,
+            'field_live_deploy' => $postDataDecoded->tableData[7]->time,
+            'field_total_' => $postDataDecoded->total
 
 
-        ]);
+          ]);
 
-        $availableTimesEntity->save();
+          $availableTimesEntity->save();
 
-        return TRUE;
-     }
+          return TRUE;
+        }
       }
-      return FALSE;
-    }
+
+    return FALSE;
   }
+}
+
+
 
 
 //        $dateTime = NULL;
