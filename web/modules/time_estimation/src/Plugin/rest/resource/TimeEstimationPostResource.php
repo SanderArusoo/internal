@@ -129,7 +129,7 @@ class TimeEstimationPostResource extends ResourceBase
             'field_jira_management' => $postDataDecoded->tableData[5]->time,
             'field_qa_deploy' => $postDataDecoded->tableData[6]->time,
             'field_live_deploy' => $postDataDecoded->tableData[7]->time,
-            'field_total_' => $postDataDecoded->total
+            'field_total' => $postDataDecoded->total
 
 
           ]);
