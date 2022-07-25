@@ -97,40 +97,37 @@ class TimeEstimationPostResource extends ResourceBase
       throw new AccessDeniedHttpException();
     }
 
-    $text = $this->createTodoItem() ? 'Item created' : 'No item created';
+    $text = $this->createEstimation() ? 'Item created' : 'No item created';
 
-  //  return new Response($text);
+    return new ResourceResponse($text);
   }
 
   /**
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createTodoItem(): bool
+  protected function createEstimation(): bool
   {
     $postData = $this->request->getContent();
 
     if (!empty($postData)) {
       $postDataDecoded = json_decode($postData);
-//      var_dump($postDataDecoded);
+
       if (!empty($postDataDecoded->task)) {
-//        $dateTime = NULL;
-//
-//        if (!empty($postDataDecoded->due_date)) {
-//          $dateTime = DrupalDateTime::createFromFormat('Y-m-d H:i:s', $postDataDecoded->due_date);
-//          $dateTime->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
-//          $dateTime = $dateTime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
 
 
         $availableTimesEntity = $this->availableTimesStorage->create([
-//
-         'field_task_nr_' => $postDataDecoded->task,
-          'label'=> $postDataDecoded->label,
+          'field_task_nr_' => $postDataDecoded->task,
+          'label' => $postDataDecoded->label,
+          'field_timestamp' => $postDataDecoded->timestamp,
 
-
-
-
-//          'field_timestamp'=> $postDataDecoded->timestamp
-
+          'field_setup' => $postDataDecoded->tableData[0]->time,
+          'field_development' => $postDataDecoded->tableData [1]->time,
+          'field_testing' => $postDataDecoded->tableData[2]->time,
+          'field_documentation' => $postDataDecoded->tableData[3]->time,
+          'field_code_review' => $postDataDecoded->tableData[4]->time,
+          'field_jira_management' => $postDataDecoded->tableData[5]->time,
+          'field_qa_deploy' => $postDataDecoded->tableData[6]->time,
+          'field_live_deploy' => $postDataDecoded->tableData[7]->time
 
 
         ]);
@@ -138,9 +135,16 @@ class TimeEstimationPostResource extends ResourceBase
         $availableTimesEntity->save();
 
         return TRUE;
+     }
       }
-    }
       return FALSE;
     }
   }
 
+
+//        $dateTime = NULL;
+//
+//        if (!empty($postDataDecoded->due_date)) {
+//          $dateTime = DrupalDateTime::createFromFormat('Y-m-d H:i:s', $postDataDecoded->due_date);
+//          $dateTime->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
+//          $dateTime = $dateTime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
