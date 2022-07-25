@@ -10,9 +10,11 @@ use Drupal\Core\Session\AccountProxy;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
+use phpDocumentor\Reflection\Types\Boolean;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
 
 
 
@@ -97,7 +99,7 @@ class TimeEstimationPostResource extends ResourceBase
 
     $text = $this->createTodoItem() ? 'Item created' : 'No item created';
 
-    return new ResourceResponse($text);
+  //  return new Response($text);
   }
 
   /**
@@ -109,8 +111,8 @@ class TimeEstimationPostResource extends ResourceBase
 
     if (!empty($postData)) {
       $postDataDecoded = json_decode($postData);
-
-//      if (!empty($postDataDecoded->name)) {
+//      var_dump($postDataDecoded);
+      if (!empty($postDataDecoded->task)) {
 //        $dateTime = NULL;
 //
 //        if (!empty($postDataDecoded->due_date)) {
@@ -119,17 +121,26 @@ class TimeEstimationPostResource extends ResourceBase
 //          $dateTime = $dateTime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
 
 
-      $availableTimesEntity = $this->availableTimesStorage->create([
-//        'name' => $postDataDecoded->name,
-        'field_task_nr_' => $postDataDecoded->description
-//        'field_priority' => $postDataDecoded->priority
-      ]);
+        $availableTimesEntity = $this->availableTimesStorage->create([
+//
+         'field_task_nr_' => $postDataDecoded->task,
+          'label'=> $postDataDecoded->label,
 
-      $availableTimesEntity->save();
 
-      return TRUE;
+
+
+//          'field_timestamp'=> $postDataDecoded->timestamp
+
+
+
+        ]);
+
+        $availableTimesEntity->save();
+
+        return TRUE;
+      }
     }
-
-    return FALSE;
+      return FALSE;
+    }
   }
-}
+

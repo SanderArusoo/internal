@@ -176,16 +176,26 @@ parameters:
   # for more information about the topic in general.
   # Note: By default the configuration is disabled.
   cors.config:
-    enabled: false
+    enabled: true
     # Specify allowed headers, like 'x-allowed-header'.
     allowedHeaders: ['*']
     # Specify allowed request methods, specify ['*'] to allow all possible ones.
-    allowedMethods: ['GET', 'POST','DELETE','PATCH', 'PUT']
+    allowedMethods: ['GET', 'POST','DELETE','PATCH', 'PUT', 'OPTIONS']
     # Configure requests allowed from specific origins.
-    allowedOrigins: ['http://localhost:8080']
+    allowedOrigins: ['*']
     # Sets the Access-Control-Expose-Headers header.
     exposedHeaders: true
     # Sets the Access-Control-Max-Age header.
     maxAge: false
     # Sets the Access-Control-Allow-Credentials header.
-    supportsCredentials: false
+    supportsCredentials: true
+
+    Access-Control-Allow-Credentials: true
+    Access-Control-Allow-Origin: ['http://localhost:8080/']
+
+
+    Access-Control-Allow-Headers: ['Authorization','Accept', 'Content-Type']
+    Access-Control-Allow-Methods:  ['GET', 'POST', 'DELETE', 'PATCH', 'PUT']
+    Access-Control-Request-Method: ['PUT', 'OPTIONS']
+
+
