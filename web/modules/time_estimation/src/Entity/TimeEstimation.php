@@ -76,6 +76,262 @@ class TimeEstimation extends ContentEntityBase implements TimeEstimationInterfac
 
     $fields = parent::baseFieldDefinitions($entity_type);
 
+    $fields['field_id'] = \Drupal\Core\Field\BaseFieldDefinition::create('integer')
+      ->setLabel(t('ID'))
+      ->setDescription(t(''))
+
+  ->setDisplayOptions('form', [
+      'type' => 'number',
+      'weight' => '21',
+      'settings' => [
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_integer',
+        'weight' => '21',
+        'label' => 'above',
+        'settings' => [
+          'thousand_separator' => '',
+          'prefix_suffix' => '1',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_task_nr_'] = \Drupal\Core\Field\BaseFieldDefinition::create('text')
+  ->setLabel(t('Task nr '))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+      'type' => 'text_textfield',
+      'weight' => '23',
+      'settings' => [
+        'size' => '60',
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'text_default',
+        'weight' => '23',
+        'label' => 'above',
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_timestamp'] = \Drupal\Core\Field\BaseFieldDefinition::create('timestamp')
+  ->setLabel(t('Timestamp'))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+    'type' => 'datetime_timestamp',
+    'weight' => '22',
+  ])
+  ->setDisplayConfigurable('form', TRUE)
+  ->setDisplayOptions('view', [
+    'type' => 'timestamp',
+    'weight' => '22',
+    'label' => 'above',
+    'settings' => [
+      'date_format' => 'short',
+      'custom_date_format' => '',
+      'timezone' => 'Europe/Tallinn',
+    ],
+  ])
+  ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_code_review'] = \Drupal\Core\Field\BaseFieldDefinition::create('float')
+  ->setLabel(t('code review'))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+      'type' => 'number',
+      'weight' => '27',
+      'settings' => [
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_decimal',
+        'weight' => '27',
+        'label' => 'above',
+        'settings' => [
+          'thousand_separator' => '',
+          'decimal_separator' => '.',
+          'scale' => '2',
+          'prefix_suffix' => '1',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_development'] = \Drupal\Core\Field\BaseFieldDefinition::create('float')
+  ->setLabel(t('development'))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+      'type' => 'number',
+      'weight' => '25',
+      'settings' => [
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_decimal',
+        'weight' => '25',
+        'label' => 'above',
+        'settings' => [
+          'thousand_separator' => '',
+          'decimal_separator' => '.',
+          'scale' => '2',
+          'prefix_suffix' => '1',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_jira_management'] = \Drupal\Core\Field\BaseFieldDefinition::create('float')
+  ->setLabel(t('jira management'))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+      'type' => 'number',
+      'weight' => '28',
+      'settings' => [
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_decimal',
+        'weight' => '28',
+        'label' => 'above',
+        'settings' => [
+          'thousand_separator' => '',
+          'decimal_separator' => '.',
+          'scale' => '2',
+          'prefix_suffix' => '1',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_live_deploy'] = \Drupal\Core\Field\BaseFieldDefinition::create('float')
+  ->setLabel(t('live deploy'))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+      'type' => 'number',
+      'weight' => '30',
+      'settings' => [
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_decimal',
+        'weight' => '30',
+        'label' => 'above',
+        'settings' => [
+          'thousand_separator' => '',
+          'decimal_separator' => '.',
+          'scale' => '2',
+          'prefix_suffix' => '1',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_qa_deploy'] = \Drupal\Core\Field\BaseFieldDefinition::create('float')
+  ->setLabel(t('qa deploy'))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+      'type' => 'number',
+      'weight' => '29',
+      'settings' => [
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_decimal',
+        'weight' => '29',
+        'label' => 'above',
+        'settings' => [
+          'thousand_separator' => '',
+          'decimal_separator' => '.',
+          'scale' => '2',
+          'prefix_suffix' => '1',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_setup'] = \Drupal\Core\Field\BaseFieldDefinition::create('float')
+  ->setLabel(t('setup'))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+      'type' => 'number',
+      'weight' => '24',
+      'settings' => [
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_decimal',
+        'weight' => '24',
+        'label' => 'above',
+        'settings' => [
+          'thousand_separator' => '',
+          'decimal_separator' => '.',
+          'scale' => '2',
+          'prefix_suffix' => '1',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_testing'] = \Drupal\Core\Field\BaseFieldDefinition::create('float')
+  ->setLabel(t('testing'))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+      'type' => 'number',
+      'weight' => '26',
+      'settings' => [
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_decimal',
+        'weight' => '26',
+        'label' => 'above',
+        'settings' => [
+          'thousand_separator' => '',
+          'decimal_separator' => '.',
+          'scale' => '2',
+          'prefix_suffix' => '1',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+$fields['field_total'] = \Drupal\Core\Field\BaseFieldDefinition::create('float')
+  ->setLabel(t('total'))
+  ->setDescription(t(''))
+  ->setDisplayOptions('form', [
+      'type' => 'number',
+      'weight' => '31',
+      'settings' => [
+        'placeholder' => '',
+      ],
+    ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_decimal',
+        'weight' => '31',
+        'label' => 'above',
+        'settings' => [
+          'thousand_separator' => '',
+          'decimal_separator' => '.',
+          'scale' => '2',
+          'prefix_suffix' => '1',
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE);
+
+
+
     $fields['label'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Label'))
       ->setRequired(TRUE)
@@ -162,7 +418,10 @@ class TimeEstimation extends ContentEntityBase implements TimeEstimationInterfac
         'type' => 'datetime_timestamp',
         'weight' => 20,
       ])
+
       ->setDisplayConfigurable('view', TRUE);
+
+
 
 
 

@@ -119,7 +119,8 @@ class TimeEstimationPostResource extends ResourceBase
             'field_timestamp' => $postDataDecoded->timestamp,
 
            //  TODO:
-            //timestamp still 01.01.1970. correct one coming in from vue front
+            //timestamp still 01.01.1970. Correct info coming in from front
+            // "Authored on" still works
 
             'field_setup' => $postDataDecoded->tableData[0]->time,
             'field_development' => $postDataDecoded->tableData [1]->time,
@@ -146,10 +147,3 @@ class TimeEstimationPostResource extends ResourceBase
 
 
 
-
-//        $dateTime = NULL;
-//
-//        if (!empty($postDataDecoded->due_date)) {
-//          $dateTime = DrupalDateTime::createFromFormat('Y-m-d H:i:s', $postDataDecoded->due_date);
-//          $dateTime->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
-//          $dateTime = $dateTime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
